@@ -1,0 +1,27 @@
+{
+  "name": "Tr8n Extension",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Crowd sourcing translations.",
+  "browser_action": {
+    "default_icon": "icon.png",
+    "popup": "tr8n.html"
+  },
+
+  "background": { "scripts": ["background.js"] },
+
+  "permissions": [
+    "tabs", "http://*/*", "https://*/*"
+  ], 
+
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["tr8n.js"]
+    }
+  ],
+
+  "icons":{
+    "128":"icon_128.png"
+  }
+}
