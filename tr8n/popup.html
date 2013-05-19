@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tr8n Options</title>
+    <style>
+    body {
+      overflow: hidden;
+      margin: 0px;
+      padding: 0px;
+      background: white;
+    }
+    </style>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <div style="padding:20px 40px 20px 40px;">
+      <img src="icon_128.png">
+      <div style="text-align:center;padding-top:0px;">
+        <button id="toggle_button">Disable</button>
+      </div>  
+    </div>  
+
+    <div style="padding:0 10px 10px 10px;font-size:10px;text-align:center;display:none;" id="note">Use Ctrl+Shift+S to see a list of avialable shortcuts.</div>
+
+    <div id="host" style="color:#ccc;font-size:10px;text-align:center;"></div>
+    <div id="host_form" style="color:#ccc;font-size:10px;text-align:center;display:none;">
+      <input id="host_field" type="text" value="translate-sandbox.geni.com" style="font-size:10px;width:150px;border:1px solid #ccc;">
+      <button id="host_button" style="font-size:10px;">set</button>
+    </div>
+  </body>
+</html>
+
