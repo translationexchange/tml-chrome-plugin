@@ -1,5 +1,5 @@
 var tr8n_enabled;
-var tr8n_host = "translate-sandbox.geni.com";
+var tr8n_host = "sandbox.tr8nhub.com";
 
 // chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 //     if (changeInfo.status == 'complete') {
