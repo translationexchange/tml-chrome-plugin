@@ -13,9 +13,9 @@ The extension uses Tr8n JavaScript SDK that gets injected into a web site being 
 Installation Instructions
 ==================
 
-To install this extension, you must be a registered user at tr8nhub.com. If you don't have an account, please visit tr8nhub.com and register as a new user. 
+To install this extension, you must be a registered user with TranslationExchange. If you don't have an account, please visit https://tr8nhub.com and register as a new user. 
 
-Once you register, you will be provided with the instructions on how to install and use this extension.
+Once you've registered, you will be provided with the instructions on how to install and use this extension.
 
 
 Privacy Notice
