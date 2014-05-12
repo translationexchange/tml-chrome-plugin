@@ -26,7 +26,4 @@ Please do not enable this extension when viewing any private information on the 
 This extension is meant to be used with public pages only.
 
 
-Screenshots
-==================
-
 
