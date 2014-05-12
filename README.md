@@ -21,7 +21,7 @@ Once you've registered, you will be provided with the instructions on how to ins
 Privacy Notice
 ==================
 
-Please do not enable this extension when viewing any private information on the web (yours or anyone else's) as the extension would attempt to translate the information and will compromize security.
+Please do not enable this extension when viewing any private information on the web (yours or anyone else's) as the extension would attempt to translate the information and will compromise security.
 
 This extension is meant to be used with public pages only.
 
