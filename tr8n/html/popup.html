@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Tr8n Options</title>
+    <style>
+    body {
+      overflow: hidden;
+      margin: 0px;
+      padding: 0px;
+      background: white;
+      font-family:Helvetica;
+    }
+    .button {
+        text-transform: uppercase;
+        line-height: 14px;
+        letter-spacing: 1px;
+        padding: 15px 24px 12px;
+        border-radius: 3px;
+        border-bottom: solid 3px rgba(0, 0, 0, 0.15);
+        border-width: 0 0 3px;
+        font-size:16px;
+        color: #fff;
+        background-color: #2db7ea;
+        border-color: #42a2ed;
+        outline:none;
+    }
+    </style>
+    <script src="../scripts/popup.js"></script>
+  </head>
+  <body style="background-image: url(../images/background.png);background-position: 30% 30%;">
+    <div style="color:#888;background:#f4f8f9;text-align:center;width:400px;">
+        <a href="https://translationexchange.com" style="outline:none;" target="_new"><img src="../images/title.png" style="width:160px;padding:10px;"></a>
+    </div>
+    <div style="padding:20px 40px 20px 40px; text-align:center;">
+
+        <div style="padding:10px;">
+            <img src="../images/trex.png" style="width:140px;opacity:0.7">
+        </div>
+
+
+      <div style="text-align:center;padding:15px;">
+        <button id="toggle_button" class="button">Disable</button>
+
+      </div>
+    </div>  
+
+    <div style="padding:0 10px 10px 10px;font-size:10px;text-align:center; display:none; color:black;" id="note">
+        <div style="padding-bottom:10px;">Use the following shortcuts to enable plugin's features:</div>
+        <div style="font-size:10px;padding-bottom:20px;display:inline-block;">
+            <table>
+                <tr>
+                    <td style="text-align:left;font-weight:bold">Ctrl+Shift+L</td>
+                    <td style="text-align:left">Opens language selector</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:bold">Ctrl+Shift+I</td>
+                    <td style="text-align:left">Enables inline translations</td>
+                </tr>
+                <tr>
+                    <td style="text-align:left;font-weight:bold">Ctrl+Shift+S</td>
+                    <td style="text-align:left">Lists all available shortcuts</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div style="background-image: url('../images/peeps.png'); width:100%;background-size:100%;height:88px;text-align: center;">
+        <div style="position:absolute; bottom:0px;text-align:center; width:100%;">
+            <div id="host" style="color:transparent;font-size:10px;text-align:center;"></div>
+            <div id="host_form" style="color:#eee;font-size:10px;text-align:center;display:none;">
+              <input id="host_field" type="text" value="dev.tr8nhub.com" style="font-size:10px;width:150px;border:1px solid #eee;">
+              <button id="host_button" style="font-size:10px;">set</button>
+            </div>
+        </div>
+    </div>
+
+  </body>
+</html>
+

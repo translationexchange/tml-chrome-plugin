@@ -13,9 +13,9 @@ The extension uses Tr8n JavaScript SDK that gets injected into a web site being 
 Installation Instructions
 ==================
 
-To install this extension, you must be a registered user with TranslationExchange. If you don't have an account, please visit https://tr8nhub.com and register as a new user. 
+Please visit the following URL from Chrome browser:
 
-Once you've registered, you will be provided with the instructions on how to install and use this extension.
+https://chrome.google.com/webstore/detail/translationexchangecom/jhhnfdojljdpklenpecaaileplkmefbh
 
 
 Privacy Notice
@@ -26,4 +26,52 @@ Please do not enable this extension when viewing any private information on the 
 This extension is meant to be used with public pages only.
 
 
+Documentation
+==================
+
+Please visit the following URL for documentation:
+
+https://translationexchange.com/docs/chrome_plugin
+
+
+
+Links
+==================
+
+* Register at TranslationExchange.com: https://translationexchange.com
+
+* Read TranslationExchange documentation: http://wiki.tr8n.io
+
+* Visit TranslationExchange blog: http://blog.tr8n.io
+
+* Follow TranslationExchange on Twitter: https://twitter.com/translationx
+
+* Connect with TranslationExchange on Facebook: https://www.facebook.com/translationexchange
+
+* If you have any questions or suggestions, contact us: info@translationexchange.com
+
+
+Copyright and license
+==================
+
+Copyright (c) 2014 Michael Berkovich, TranslationExchange.com
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 

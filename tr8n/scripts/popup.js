@@ -42,10 +42,10 @@ PopupController.prototype = {
     this.host_.innerHTML = bgPage.tr8n_host;
     if (bgPage.tr8n_enabled) {
       this.note_.style.display = "block";
-      this.toggle_button_.innerHTML = "Disable";
+      this.toggle_button_.innerHTML = "Deactivate";
     } else {
       this.note_.style.display = "none";
-      this.toggle_button_.innerHTML = "Enable";
+      this.toggle_button_.innerHTML = "Activate";
     }
   },
 

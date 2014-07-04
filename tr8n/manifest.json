@@ -1,14 +1,18 @@
 {
-  "name": "TranslationExchange",
-  "version": "1.0.4",
+  "name": "TranslationExchange.com",
+  "short_name": "TranslationExchange.com",
+  "version": "1.0.5",
   "manifest_version": 2,
-  "description": "Crowdsourced translations for the entire web.",
+  "minimum_chrome_version": "22.0.0.0",
+  "description": "Help us translate the entire world wide web!",
   "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html"
+    "default_icon": "images/icon_32.png",
+    "default_popup": "html/popup.html"
   },
 
-  "background": { "scripts": ["background.js"] },
+  "update_url": "https://clients2.google.com/service/update2/crx",
+
+  "background": { "scripts": ["scripts/background.js"] },
 
   "permissions": [
     "tabs", "http://*/*", "https://*/*"
@@ -17,11 +21,13 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["tr8n.js"]
+      "js": ["scripts/tr8n.js"]
     }
   ],
 
   "icons":{
-    "128":"icon_128.png"
+    "16":"images/icon_16.png",
+    "48":"images/icon_48.png",
+    "128":"images/icon_128.png"
   }
 }
