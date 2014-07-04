@@ -3,31 +3,265 @@
   <head>
     <title>Tr8n Options</title>
     <style>
+
+
+    @-webkit-keyframes animatedBackground {
+      from { background-position: 0 30px; }
+      to { background-position: 1054px 30px; }
+    }
+
+
     body {
-      overflow: hidden;
+      xoverflow: hidden;
       margin: 0px;
       padding: 0px;
-      background: white;
-      font-family:Helvetica;
+      font-family:Helvetica, Arial, sans-serif;
+      background-color:#F4F8F9;
+      background-image: url(../images/background.png);
+      background-position: 0px 0px;
+      background-repeat: repeat-x;
+      -webkit-animation: animatedBackground 40s linear infinite;
     }
-    .button {
-        text-transform: uppercase;
-        line-height: 14px;
-        letter-spacing: 1px;
-        padding: 15px 24px 12px;
-        border-radius: 3px;
-        border-bottom: solid 3px rgba(0, 0, 0, 0.15);
-        border-width: 0 0 3px;
-        font-size:16px;
-        color: #fff;
-        background-color: #2db7ea;
-        border-color: #42a2ed;
-        outline:none;
+
+    .btn {
+      text-transform: uppercase;
+      line-height: 14px;
+      padding: 14px 24px 12px;
+      border-radius: 2px;
+      border-bottom:solid 3px rgba(0, 0, 0, 0.15);
+      border-width: 0 0 3px;
+      font-size:13px;
+      color: #fff;
+      background-color: #2db7ea;
+      border-color: #42a2ed;
+      outline:none;
+      cursor:pointer;
+      
     }
+
+    .btn:hover {
+      background-color: #1BA7DA;
+      border-color: #4589BF;
+    }
+
+    .btn:active {
+      background-color: #3276B1;
+      border-color:#3276B1;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);
+    }
+
+
+    .btn.btn-green {
+      background:#64CE83;
+      border-bottom:solid 3px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn.btn-green:hover {
+      background-color: #4DC26F;
+      border-color: #2D994D;
+    }
+
+    .btn.btn-green:active {
+      background-color: #389D56;
+      border-color:#389D56;
+    }
+
+
+    a {
+      color:#16b;
+      text-decoration:none;
+    }
+
+
+    .auth-form {
+      margin:20px auto;
+      width:300px;
+      text-align:center;
+      background: #FFF;
+      padding: 20px;
+      box-shadow: 0 2px 1px rgba(0, 0, 0, 0.06);
+      border: solid 1px #DCDDE0;
+      border-radius: 3px;      
+    }
+
+    .auth-form .btn {
+      width:100%;
+    }
+
+    .auth-form .form-group {
+      margin-bottom: 10px;
+    }
+
+    .auth-form label.error {
+      display: block;
+      color: #F33A3A;
+      font-size: 11px;
+      text-align: left;
+      padding: 4px 0 0;
+      font-weight: 100;
+    }
+    
+    .auth-form .flash-error {
+      background: #D34D4D;
+      padding: 10px 0;
+      margin: -20px -20px 10px;
+      color: #FFF;
+      border-radius: 2px 2px 0 0;
+      font-size: 14px;
+      font-weight: 100;
+    }
+
+    .auth-form h3 {
+      font-weight:100;
+      color:#555;
+      margin:5px 0 0;
+      font-size: 22px;
+
+    }
+    .auth-form p {
+      font-weight:100;
+      color:#999;
+      margin: 7px 0 15px;
+    }
+
+    .auth-form input {
+      padding: 10px;
+      height: 38px;
+      border-radius: 1px;
+      border: solid 1px #ccc;
+      box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.05);
+      background:#fcfcfc;
+      font-size: 14px;
+      box-sizing: border-box;
+      width: 100%;
+      outline:none;
+    }
+
+    .auth-form input:active,
+    .auth-form input:focus {
+      background:#fff;
+    }
+
+    .auth-form .passcode {
+      text-align:center;
+    }
+
+    .auth-form .ft {
+      font-size: 12px;
+      color: #AAA;
+      font-weight: 100;
+      padding-top: 5px;
+    }
+
+
+    #login,#signup,#registration,#confirm,#main {
+      display:none;
+    }
+
+    body.login #login,
+    body.signup #signup,
+    body.registration #registration,
+    body.confirm #confirm,
+    body.main #main {
+      display:block;
+    }
+
+
+
     </style>
+    <script src="../scripts/jquery.js"></script>
+    <script src="../scripts/jquery.validate.js"></script>
     <script src="../scripts/popup.js"></script>
   </head>
-  <body style="background-image: url(../images/background.png);background-position: 30% 30%;">
+  <body>
+
+    <div id="login" class="auth-form auth-login">
+      <img src="../images/logo.png" width="55px">
+      <h3>Log In</h3>
+      <p>
+        Welcome Back!
+      </p>            
+      <form action="http://translationexchange.com/login" class="login-form">
+        <div class="form-group">
+          <input name="email" type="email" placeholder="Email" class="required email">
+        </div>
+        <div class="form-group">
+          <input name="password" type="password" placeholder="Password" class="required">
+        </div>
+        <div class="form-group">
+          <button class="btn">Log In</button>
+        </div>
+        <div class="ft">
+          Don't have an account? <a href="#" data-show-view="signup">Sign up now</a>.
+        </div>
+      </form>
+    </div>
+
+
+    <div id="signup" class="auth-form auth-signup">
+      <img src="../images/logo.png" width="55px">
+      <h3>Sign Up</h3>
+      <p>
+        Provide us with your email address and we will email you instructions on how to complete your registration.
+      </p>      
+      <form  action="http://translationexchange.com/signup"class="signup-form">
+        <div class="form-group">
+          <input type="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-green">Sign Up</button>
+        </div>
+        <div class="ft">
+          Already have an account? <a href="#" data-show-view="login">Log in here.</a>
+        </div>
+      </form>
+    </div>
+
+
+    <div id="confirm" class="auth-form auth-signup">
+      <img src="../images/logo.png" width="55px">
+      <h3>Check Your Email</h3>
+      <p>
+        We emailed you instructions on how to complete your registration.
+      </p>      
+      <form action="http://translationexchange.com/confirm" class="confirm-form">
+        <div class="form-group">
+          <input class="passcode" type="text" placeholder="Pass Code">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-green">Continue</button>
+        </div>
+        <div class="ft">
+          <a href="#" data-show-view="signup">Return to Sign Up</a>
+        </div>
+      </form>
+    </div>
+
+
+    <div id="registration" class="auth-form auth-registration">
+      <img src="../images/logo.png" width="55px">
+      <h3>Complete Registration</h3>
+      <p>
+        To complete registration, please provide the following information:
+      </p>      
+      <form action="http://translationexchange.com/registration" class="registration-form">
+        <div class="form-group">
+          <input type="text" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Last Name">
+        </div>        
+        <div class="form-group">
+          <button class="btn btn-green">Get Started</button>
+        </div>
+      </form>
+    </div>
+
+
+
+    <div id="main">
+
+
     <div style="color:#888;background:#f4f8f9;text-align:center;width:400px;">
         <a href="https://translationexchange.com" style="outline:none;" target="_new"><img src="../images/title.png" style="width:160px;padding:10px;"></a>
     </div>
@@ -39,7 +273,7 @@
 
 
       <div style="text-align:center;padding:15px;">
-        <button id="toggle_button" class="button">Disable</button>
+        <button id="toggle_button" class="btn">Disable</button>
 
       </div>
     </div>  
@@ -72,6 +306,8 @@
               <button id="host_button" style="font-size:10px;">set</button>
             </div>
         </div>
+    </div>
+
     </div>
 
   </body>
