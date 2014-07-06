@@ -175,7 +175,8 @@
   </head>
   <body>
 
-    <div id="login" class="auth-form auth-login">
+  <div id="login" style="width:400px;opacity:0.8">
+    <div class="auth-form auth-login">
       <img src="../images/logo.png" width="55px">
       <h3>Log In</h3>
       <p>
@@ -191,14 +192,29 @@
         <div class="form-group">
           <button class="btn">Log In</button>
         </div>
+
+        <p style="color: #888; font-size:12px;">
+          Or login with one of the following services:
+        </p>
+
+        <p style="padding-bottom:20px;">
+            <button id="oauth_facebook">Facebook</button>
+            <button id="oauth_twitter">Twitter</button>
+            <button id="oauth_github">GitHub</button>
+            <button id="oauth_google_oauth2">Google</button>
+            <button id="oauth_linkedin">LinkedIn</button>
+            <button id="oauth_vkontakte">VKontakte</button>
+        </p>
+
         <div class="ft">
           Don't have an account? <a href="#" data-show-view="signup">Sign up now</a>.
         </div>
       </form>
     </div>
+  </div>
 
-
-    <div id="signup" class="auth-form auth-signup">
+  <div id="signup" style="width:400px;opacity:0.8">
+    <div class="auth-form auth-signup">
       <img src="../images/logo.png" width="55px">
       <h3>Sign Up</h3>
       <p>
@@ -216,6 +232,7 @@
         </div>
       </form>
     </div>
+  </div>
 
 
     <div id="confirm" class="auth-form auth-signup">
@@ -223,7 +240,7 @@
       <h3>Check Your Email</h3>
       <p>
         We emailed you instructions on how to complete your registration.
-      </p>      
+      </p>
       <form action="http://translationexchange.com/confirm" class="confirm-form">
         <div class="form-group">
           <input class="passcode" type="text" placeholder="Pass Code">
@@ -258,55 +275,53 @@
     </div>
 
 
+    <div id="main" style="width:400px;">
 
-    <div id="main">
+        <div style="color:#888;background:#f4f8f9;text-align:center;width:400px;">
+            <a href="https://translationexchange.com" style="outline:none;" target="_new"><img src="../images/title.png" style="width:160px;padding:10px;"></a>
+        </div>
+        <div style="padding:20px 40px 20px 40px; text-align:center;">
+
+            <div style="padding:10px;">
+                <img src="../images/trex.png" style="width:140px;opacity:0.7">
+            </div>
 
 
-    <div style="color:#888;background:#f4f8f9;text-align:center;width:400px;">
-        <a href="https://translationexchange.com" style="outline:none;" target="_new"><img src="../images/title.png" style="width:160px;padding:10px;"></a>
-    </div>
-    <div style="padding:20px 40px 20px 40px; text-align:center;">
+          <div style="text-align:center;padding:15px;">
+            <button id="toggle_button" class="btn">Disable</button>
 
-        <div style="padding:10px;">
-            <img src="../images/trex.png" style="width:140px;opacity:0.7">
+          </div>
         </div>
 
-
-      <div style="text-align:center;padding:15px;">
-        <button id="toggle_button" class="btn">Disable</button>
-
-      </div>
-    </div>  
-
-    <div style="padding:0 10px 10px 10px;font-size:10px;text-align:center; display:none; color:black;" id="note">
-        <div style="padding-bottom:10px;">Use the following shortcuts to enable plugin's features:</div>
-        <div style="font-size:10px;padding-bottom:20px;display:inline-block;">
-            <table>
-                <tr>
-                    <td style="text-align:left;font-weight:bold">Ctrl+Shift+L</td>
-                    <td style="text-align:left">Opens language selector</td>
-                </tr>
-                <tr>
-                    <td style="text-align:left;font-weight:bold">Ctrl+Shift+I</td>
-                    <td style="text-align:left">Enables inline translations</td>
-                </tr>
-                <tr>
-                    <td style="text-align:left;font-weight:bold">Ctrl+Shift+S</td>
-                    <td style="text-align:left">Lists all available shortcuts</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div style="background-image: url('../images/peeps.png'); width:100%;background-size:100%;height:88px;text-align: center;">
-        <div style="position:absolute; bottom:0px;text-align:center; width:100%;">
-            <div id="host" style="color:transparent;font-size:10px;text-align:center;"></div>
-            <div id="host_form" style="color:#eee;font-size:10px;text-align:center;display:none;">
-              <input id="host_field" type="text" value="dev.tr8nhub.com" style="font-size:10px;width:150px;border:1px solid #eee;">
-              <button id="host_button" style="font-size:10px;">set</button>
+        <div style="padding:0 10px 10px 10px;font-size:10px;text-align:center; display:none; color:black;" id="note">
+            <div style="padding-bottom:10px;">Use the following shortcuts to enable plugin's features:</div>
+            <div style="font-size:10px;padding-bottom:20px;display:inline-block;">
+                <table>
+                    <tr>
+                        <td style="text-align:left;font-weight:bold">Ctrl+Shift+L</td>
+                        <td style="text-align:left">Opens language selector</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;font-weight:bold">Ctrl+Shift+I</td>
+                        <td style="text-align:left">Enables inline translations</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:left;font-weight:bold">Ctrl+Shift+S</td>
+                        <td style="text-align:left">Lists all available shortcuts</td>
+                    </tr>
+                </table>
             </div>
         </div>
-    </div>
+
+        <div style="background-image: url('../images/peeps.png'); width:100%;background-size:100%;height:88px;text-align: center;">
+            <div style="position:absolute; bottom:0px;text-align:center; width:100%;">
+                <div id="host" style="color:transparent;font-size:10px;text-align:center;"></div>
+                <div id="host_form" style="color:#eee;font-size:10px;text-align:center;display:none;">
+                  <input id="host_field" type="text" value="dev.tr8nhub.com" style="font-size:10px;width:150px;border:1px solid #eee;">
+                  <button id="host_button" style="font-size:10px;">set</button>
+                </div>
+            </div>
+        </div>
 
     </div>
 
