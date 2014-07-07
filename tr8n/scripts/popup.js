@@ -7,18 +7,19 @@ var PopupController = function () {
   this.host_button_   = $('#host_button');
   this.auth_forms     = $('.auth-form form');
 
-  this.oauth_facebook_button_ = $('#oauth_facebook');
-  this.oauth_twitter_button_ = $('#oauth_twitter');
-  this.oauth_google_button_ = $('#oauth_google_oauth2');
-  this.oauth_github_button_ = $('#oauth_github');
-  this.oauth_linkedin_button_ = $('#oauth_linkedin');
-  this.oauth_vkontakte_button_ = $('#oauth_vkontakte');
+  this.language_button_ = $('#change_language');
+  this.translator_button_ = $('#toggle_inline_translations');
 
   this.updateLabels();
   this.addListeners_();
 
-//  this.showView('login');
-  this.showView('main');
+//  this.showView('registration');
+
+  if (this.getBackgroundPage().tr8n_signup_email) {
+    $("#confirm_email").val(this.getBackgroundPage().tr8n_signup_email);
+    this.showView('confirm');
+  } else
+    this.showView('main');
 };
 
 PopupController.prototype = {
@@ -35,12 +36,8 @@ PopupController.prototype = {
   host_field_: null,
   host_button_: null,
 
-  oauth_facebook_button_: null,
-  oauth_twitter_button_: null,
-  oauth_google_button_: null,
-  oauth_github_button_: null,
-  oauth_linkedin_button_: null,
-  oauth_vkontakte_button_: null,
+  language_button_: null,
+  translator_button_: null,
 
   /**
    * Adds event listeners to the button in order to capture a user's click, and
@@ -54,14 +51,140 @@ PopupController.prototype = {
     this.host_.on(          'dblclick', this.showHostForm_.bind(this));
     this.host_button_.on(   'click',    this.setHost_.bind(this));
 
-    this.oauth_facebook_button_.on(   'click',    this.oauth_.bind(this));
-    this.oauth_twitter_button_.on(   'click',    this.oauth_.bind(this));
-    this.oauth_google_button_.on(   'click',    this.oauth_.bind(this));
-    this.oauth_github_button_.on(   'click',    this.oauth_.bind(this));
-    this.oauth_linkedin_button_.on(   'click',    this.oauth_.bind(this));
-    this.oauth_vkontakte_button_.on(   'click',    this.oauth_.bind(this));
+    var providers = ["facebook", "twitter", "google_oauth2", "github", "linkedin", "vkontakte"];
+    var self = this;
+    $.each(providers, function( index, provider ) {
+      $('#login-' + provider).on(   'click',    self.oauth_.bind(self) );
+      $('#signup-' + provider).on(   'click',    self.oauth_.bind(self) );
+    });
+
+    $("#return_to_signup").on(   'click',    this.returnToSignup.bind(this));
+
+    this.language_button_.on(   'click',    this.changeLanguage_.bind(this));
+    this.translator_button_.on(   'click',    this.inlineTranslator_.bind(this));
 
     $('[data-show-view]').on('click',   this.showView.bind(this));
+  },
+
+  url: function(path) {
+    var host = this.getBackgroundPage().tr8n_host;
+    var url = host + path;
+    if (host.indexOf("localhost") != -1 || host.indexOf("lvh.me") != -1)
+      url = "http://" + url;
+    else
+      url = "https://" + url;
+
+    return url;
+  },
+
+  checkStatus: function(callback) {
+    var url = this.url("/tr8n/api/proxy/status");
+    this.log("Checking status: " + url);
+
+    $.ajax({
+      type    : "get",
+      url     : url,
+      success : function(response) {
+        if (callback) callback(response);
+      },
+      error   : function(response) {
+        this.log("Failed to check status.");
+      }
+    });
+
+  },
+
+  changeLanguage_: function() {
+    var self = this;
+
+    chrome.tabs.getSelected(null, function(tab) {
+      self.log("Current tab url: " + tab.url);
+      var url = self.url("/tr8n/api/proxy/languages?referer=" + encodeURIComponent(tab.url));
+      self.log("Loading languages: " + url);
+      $.ajax({
+        type    : "post",
+        url     : url,
+        success : function(response) {
+          $('#language_list').html("");
+
+          self.log("Loaded languages: " + response.languages);
+
+          $.each(response.languages, function( index, lang ) {
+            var lang_div = document.createElement("div");
+            lang_div.className = "language_item";
+            lang_div.setAttribute("data-locale", lang.locale);
+            $(lang_div).html("<img src='" + lang.flag_url + "' style='vertical-align:middle;padding-right:10px;'>" + lang.name);
+            lang_div.onclick = function(e) {
+              var locale = e.currentTarget.getAttribute("data-locale");
+              self.log(locale + " clicked");
+              self.selectLocale(locale);
+            };
+             $('#language_list').append(lang_div);
+          });
+        },
+        error   : function(response) {
+          self.log("Failed to load languages.");
+        }
+      });
+    });
+
+    self.showView('language_selector');
+  },
+
+  selectLocale: function(locale) {
+    var self = this;
+
+    chrome.tabs.getSelected(null, function(tab) {
+      self.log("Current tab url: " + tab.url);
+      var url = self.url("/tr8n/api/proxy/switch_locale?locale=" + locale + "&referer=" + encodeURIComponent(tab.url));
+      self.log("Selecting locale: " + url);
+
+      $.ajax({
+        type    : "post",
+        url     : url,
+        success : function(response) {
+          self.log("Switched language");
+          self.reloadWindow();
+          self.showView('main');
+        },
+        error   : function(response) {
+          self.log("Failed to switch language");
+        }
+      });
+
+    });
+
+  },
+
+  inlineTranslator_: function() {
+    var self = this;
+    this.checkStatus(function(status) {
+      self.log("Status: " + status);
+      if (status == "logged_in") {
+
+        chrome.tabs.getSelected(null, function(tab) {
+          self.log("Current tab url: " + tab.url);
+          var url = self.url("/tr8n/api/proxy/toggle_inline_translations?referer=" + encodeURIComponent(tab.url));
+          self.log("Toggling inline translator: " + url);
+
+          $.ajax({
+            type    : "post",
+            url     : url,
+            success : function(response) {
+              self.log("Updated inline translator");
+              self.reloadWindow();
+            },
+            error   : function(response) {
+              self.log("Failed to enable inline translations.");
+            }
+          });
+
+        });
+
+      } else {
+        self.showView("login");
+      }
+    });
   },
 
   getBackgroundPage: function() {
@@ -73,8 +196,8 @@ PopupController.prototype = {
   },
 
   oauth_: function(e) {
-    var provider = e.currentTarget.id.replace("oauth_", "");
-    this.log(provider);
+    var provider = e.currentTarget.id.split("-")[1];
+    this.log("Auth provider: " + provider);
     var w = 800, h = 600;
     var left = (screen.width/2)-(w/2);
     var top = (screen.height/2)-(h/2);
@@ -103,13 +226,9 @@ PopupController.prototype = {
   },
 
   toggleTr8n_: function() {
-    if (true) {
-      this.showView('login');
-    } else {
-      chrome.extension.getBackgroundPage().tr8n_enabled = !chrome.extension.getBackgroundPage().tr8n_enabled;
-      this.updateLabels();
-      this.reloadWindow();
-    }
+    chrome.extension.getBackgroundPage().tr8n_enabled = !chrome.extension.getBackgroundPage().tr8n_enabled;
+    this.updateLabels();
+    this.reloadWindow();
   },
 
   showHostForm_: function() {
@@ -140,44 +259,73 @@ PopupController.prototype = {
     var frm = $(e.currentTarget);
     e.preventDefault();
     if(!frm.valid()) return;
-    $.ajax({
-      type    : "post",
-      url     : frm.attr('action'),
-      data    : frm.serialize(),
-      success : this[$.camelCase("handle-"+frm.attr('class'))],
-      error   : this[$.camelCase("handle-"+frm.attr('class')+"-error")]
+
+    var self = this;
+
+    chrome.tabs.getSelected(null, function(tab) {
+      var url = self.url(frm.attr('action') + "?referer=" + encodeURIComponent(tab.url));
+      self.log("Submitting form: " + url);
+
+      $.ajax({
+        type    : "post",
+        url     : url,
+        data    : frm.serialize(),
+        success : self[$.camelCase("handle-"+frm.attr('class'))].bind(self),
+        error   : self[$.camelCase("handle-"+frm.attr('class')+"-error")].bind(self)
+      });
+
     });
   },
 
-
   handleLoginForm: function(data) {
-    showView('main');
+    this.log("Login success");
+    this.showView('main');
+    this.reloadWindow();
   },
 
   handleLoginFormError: function(xhr) {
-    var error = $('<div>').addClass('flash-error').text("Something went wrong!")
+    this.log("Failed to login");
+    var data = JSON.parse(xhr.responseText);
+    var error = $('<div>').addClass('flash-error').text(data.error);
     $('#login').find('.flash-error').remove().end().prepend(error);
   },
 
   handleSignupForm: function(data) {
-    showView('confirm')
+    this.getBackgroundPage().tr8n_signup_email = $("#signup_email").val();
+    this.showView('confirm')
   },
 
   handleSignupFormError: function(xhr) {
+    // get error message from error json
+
+    this.log("Failed to signup");
+    var error = $('<div>').addClass('flash-error').text("Something went wrong!");
+    $('#signup').find('.flash-error').remove().end().prepend(error);
   },
 
   handleConfirmForm: function(data) {
-    showView('registration')
+    this.getBackgroundPage().tr8n_signup_email = null;
+    this.showView('registration')
+  },
+
+  returnToSignup: function() {
+    this.getBackgroundPage().tr8n_signup_email = null;
+    this.showView("signup");
   },
   
   handleConfirmFormError: function(xhr) {
+    this.log("Failed to confirm");
+    var error = $('<div>').addClass('flash-error').text("Incorrect password");
+    $('#confirm').find('.flash-error').remove().end().prepend(error);
   },
 
   handleRegistrationForm: function(data) {
-    showView('main')
+    this.showView('main');
+    this.reloadWindow();
   },
 
   handleRegistrationFormError: function(data) {
+    this.log("Failed to register");
   },
 
   showView: function(name){

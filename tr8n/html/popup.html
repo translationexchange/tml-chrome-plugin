@@ -1,6 +1,6 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <title>Tr8n Options</title>
     <style>
 
@@ -36,7 +36,7 @@
       border-color: #42a2ed;
       outline:none;
       cursor:pointer;
-      
+
     }
 
     .btn:hover {
@@ -81,7 +81,7 @@
       padding: 20px;
       box-shadow: 0 2px 1px rgba(0, 0, 0, 0.06);
       border: solid 1px #DCDDE0;
-      border-radius: 3px;      
+      border-radius: 3px;
     }
 
     .auth-form .btn {
@@ -100,15 +100,16 @@
       padding: 4px 0 0;
       font-weight: 100;
     }
-    
-    .auth-form .flash-error {
+
+    .flash-error {
       background: #D34D4D;
       padding: 10px 0;
-      margin: -20px -20px 10px;
+      margin: 0px 0px 10px;
       color: #FFF;
       border-radius: 2px 2px 0 0;
       font-size: 14px;
       font-weight: 100;
+      text-align: center;
     }
 
     .auth-form h3 {
@@ -154,126 +155,164 @@
     }
 
 
-    #login,#signup,#registration,#confirm,#main {
+    #login,#signup,#registration,#confirm,#main,#language_selector {
       display:none;
     }
 
     body.login #login,
     body.signup #signup,
     body.registration #registration,
+    body.language_selector #language_selector,
     body.confirm #confirm,
     body.main #main {
       display:block;
     }
 
+    .language_list {
+        margin-top:10px;
+        border: 1px solid #ccc;
+        max-height: 400px;
+        min-height: 400px;
+        overflow: auto;
+    }
 
+    .language_item {
+        text-align: left;
+        padding:8px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+    }
+
+    .language_item:hover {
+       background: #eee;
+    }
 
     </style>
     <script src="../scripts/jquery.js"></script>
     <script src="../scripts/jquery.validate.js"></script>
     <script src="../scripts/popup.js"></script>
-  </head>
-  <body>
+</head>
+<body>
 
-  <div id="login" style="width:400px;opacity:0.8">
-    <div class="auth-form auth-login">
-      <img src="../images/logo.png" width="55px">
-      <h3>Log In</h3>
-      <p>
-        Welcome Back!
-      </p>            
-      <form action="http://translationexchange.com/login" class="login-form">
-        <div class="form-group">
-          <input name="email" type="email" placeholder="Email" class="required email">
-        </div>
-        <div class="form-group">
-          <input name="password" type="password" placeholder="Password" class="required">
-        </div>
-        <div class="form-group">
-          <button class="btn">Log In</button>
-        </div>
+    <div id="login" style="width:400px;opacity:0.8">
+        <div class="auth-form auth-login">
+          <img src="../images/logo.png" width="55px">
+          <h3>Log In</h3>
+          <p>
+            Welcome Back!
+          </p>
+          <form action="/tr8n/api/proxy/authorize" class="login-form">
+            <div class="form-group">
+              <input name="email" type="email" placeholder="Email" class="required email">
+            </div>
+            <div class="form-group">
+              <input name="password" type="password" placeholder="Password" class="required">
+            </div>
+            <div class="form-group">
+              <button class="btn">Log In</button>
+            </div>
 
-        <p style="color: #888; font-size:12px;">
-          Or login with one of the following services:
-        </p>
+            <p style="color: #888; font-size:12px;">
+              Or login with one of the following services:
+            </p>
 
-        <p style="padding-bottom:20px;">
-            <button id="oauth_facebook">Facebook</button>
-            <button id="oauth_twitter">Twitter</button>
-            <button id="oauth_github">GitHub</button>
-            <button id="oauth_google_oauth2">Google</button>
-            <button id="oauth_linkedin">LinkedIn</button>
-            <button id="oauth_vkontakte">VKontakte</button>
-        </p>
+            <p style="padding-bottom:20px;">
+                <a href="#" id="login-facebook"><img src="../images/fb.png" style="width:30px"></a>
+                <a href="#" id="login-github"><img src="../images/github.png" style="width:30px"></a>
+                <a href="#" id="login-google_oauth2"><img src="../images/google.png" style="width:30px"></a>
+                <a href="#" id="login-linkedin"><img src="../images/linkedin.png" style="width:30px"></a>
+            </p>
 
-        <div class="ft">
-          Don't have an account? <a href="#" data-show-view="signup">Sign up now</a>.
+            <div class="ft">
+              Don't have an account? <a href="#" data-show-view="signup">Sign up now</a>.
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
-  </div>
-
-  <div id="signup" style="width:400px;opacity:0.8">
-    <div class="auth-form auth-signup">
-      <img src="../images/logo.png" width="55px">
-      <h3>Sign Up</h3>
-      <p>
-        Provide us with your email address and we will email you instructions on how to complete your registration.
-      </p>      
-      <form  action="http://translationexchange.com/signup"class="signup-form">
-        <div class="form-group">
-          <input type="email" placeholder="Email">
-        </div>
-        <div class="form-group">
-          <button class="btn btn-green">Sign Up</button>
-        </div>
-        <div class="ft">
-          Already have an account? <a href="#" data-show-view="login">Log in here.</a>
-        </div>
-      </form>
-    </div>
-  </div>
-
-
-    <div id="confirm" class="auth-form auth-signup">
-      <img src="../images/logo.png" width="55px">
-      <h3>Check Your Email</h3>
-      <p>
-        We emailed you instructions on how to complete your registration.
-      </p>
-      <form action="http://translationexchange.com/confirm" class="confirm-form">
-        <div class="form-group">
-          <input class="passcode" type="text" placeholder="Pass Code">
-        </div>
-        <div class="form-group">
-          <button class="btn btn-green">Continue</button>
-        </div>
-        <div class="ft">
-          <a href="#" data-show-view="signup">Return to Sign Up</a>
-        </div>
-      </form>
     </div>
 
+    <div id="signup" style="width:400px;opacity:0.8">
+        <div class="auth-form auth-signup">
+          <img src="../images/logo.png" width="55px">
+          <h3>Sign Up</h3>
+          <p>
+            Provide us with your email address and we will email you instructions on how to complete your registration.
+          </p>
+          <form  action="/tr8n/api/proxy/signup" class="signup-form">
+            <div class="form-group">
+              <input type="email" placeholder="Email" name="email" id="signup_email">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-green">Sign Up</button>
+            </div>
 
-    <div id="registration" class="auth-form auth-registration">
-      <img src="../images/logo.png" width="55px">
-      <h3>Complete Registration</h3>
-      <p>
-        To complete registration, please provide the following information:
-      </p>      
-      <form action="http://translationexchange.com/registration" class="registration-form">
-        <div class="form-group">
-          <input type="text" placeholder="First Name">
+            <p style="color: #888; font-size:12px;">
+              Or login with one of the following services:
+            </p>
+
+            <p style="padding-bottom:20px;">
+                <a href="#" id="signup-facebook"><img src="../images/fb.png" style="width:30px"></a>
+                <a href="#" id="signup-github"><img src="../images/github.png" style="width:30px"></a>
+                <a href="#" id="signup-google_oauth2"><img src="../images/google.png" style="width:30px"></a>
+                <a href="#" id="signup-linkedin"><img src="../images/linkedin.png" style="width:30px"></a>
+            </p>
+
+            <div class="ft">
+              Already have an account? <a href="#" data-show-view="login">Log in here.</a>
+            </div>
+          </form>
         </div>
-        <div class="form-group">
-          <input type="text" placeholder="Last Name">
-        </div>        
-        <div class="form-group">
-          <button class="btn btn-green">Get Started</button>
-        </div>
-      </form>
     </div>
 
+    <div id="confirm" style="width:400px;opacity:0.8">
+        <div class="auth-form auth-signup">
+          <img src="../images/logo.png" width="55px">
+          <h3>Check Your Email</h3>
+          <p>
+            We emailed you instructions on how to complete your registration.
+          </p>
+          <form action="/tr8n/api/proxy/confirm_email" class="confirm-form">
+            <input type="hidden" name="email" id="confirm_email">
+
+            <div class="form-group">
+              <input class="passcode" type="text" placeholder="Pass Code" name="password">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-green">Continue</button>
+            </div>
+            <div class="ft">
+              <a href="#" id="return_to_signup">Return to Sign Up</a>
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <div id="registration" style="width:400px;opacity:0.8">
+        <div class="auth-form auth-registration">
+          <img src="../images/logo.png" width="55px">
+          <h3>Complete Registration</h3>
+          <p>
+            To complete registration, please provide the following information:
+          </p>
+          <form action="/tr8n/api/proxy/update_user" class="registration-form">
+            <div class="form-group">
+              <input type="text" placeholder="Name" name="name">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-green">Get Started</button>
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <div id="language_selector" style="width:400px;opacity:0.8">
+        <div class="auth-form auth-registration">
+            <img src="../images/logo.png" width="55px">
+            <h3>Choose a language</h3>
+            <div id="language_list" class="language_list">
+                <div style="padding:10px; text-align:left; font-size: 14px; color: #666;"><img src="../images/spinner.gif" style="vertical-align: middle;"> Loading...</div>
+            </div>
+        </div>
+    </div>
 
     <div id="main" style="width:400px;">
 
@@ -288,28 +327,21 @@
 
 
           <div style="text-align:center;padding:15px;">
-            <button id="toggle_button" class="btn">Disable</button>
+            <button id="toggle_button" class="btn btn-green">Disable</button>
 
           </div>
         </div>
 
         <div style="padding:0 10px 10px 10px;font-size:10px;text-align:center; display:none; color:black;" id="note">
-            <div style="padding-bottom:10px;">Use the following shortcuts to enable plugin's features:</div>
-            <div style="font-size:10px;padding-bottom:20px;display:inline-block;">
-                <table>
-                    <tr>
-                        <td style="text-align:left;font-weight:bold">Ctrl+Shift+L</td>
-                        <td style="text-align:left">Opens language selector</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;font-weight:bold">Ctrl+Shift+I</td>
-                        <td style="text-align:left">Enables inline translations</td>
-                    </tr>
-                    <tr>
-                        <td style="text-align:left;font-weight:bold">Ctrl+Shift+S</td>
-                        <td style="text-align:left">Lists all available shortcuts</td>
-                    </tr>
-                </table>
+            <div style="margin-bottom:15px;">
+                <button id="change_language" class="btn" style="font-size:10px;">Change Language</button>
+                <button id="toggle_inline_translations" class="btn" style="font-size:10px;">Toggle Translations</button>
+            </div>
+
+            <div style="background:#eee; opacity: 0.6; margin:10px; padding: 10px">
+                <div style="padding:10px;">Use <strong>Ctrl+Shift+S</strong> to see a list of available shortcuts.</div>
+                <div style=""><strong>Right-Mouse-Click</strong> (Windows) or <strong>Ctrl+Click</strong> (Mac) on any text underlined with
+                    <span style="border-bottom:1px solid red">red</span> to translate it or <span style="border-bottom:1px solid green">green</span> to vote on translations.</div>
             </div>
         </div>
 

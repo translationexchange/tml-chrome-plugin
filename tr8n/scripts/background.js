@@ -1,5 +1,7 @@
 var tr8n_enabled;
 var tr8n_host = "translationexchange.com";
+//var tr8n_host = "lvh.me:3000";
+var tr8n_signup_email = null;
 
 // chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 //     if (changeInfo.status == 'complete') {
@@ -12,5 +14,5 @@ chrome.runtime.onMessage.addListener(
     //             "from a content script:" + sender.tab.url :
     //             "from the extension");
     if (request.method == "ping")
-        sendResponse({enabled: tr8n_enabled, host:tr8n_host});
+        sendResponse({enabled: tr8n_enabled, host: tr8n_host});
 });
