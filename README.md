@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://www.gravatar.com/avatar/c3e864f3c8cf6a9c90416b8d9e8a14c3.png?s=200">
+  <img src="http://www.gravatar.com/avatar/c3e864f3c8cf6a9c90416b8d9e8a14c3.png?s=170">
 </p>
 
 TML Chrome Extension
