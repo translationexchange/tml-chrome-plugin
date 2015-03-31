@@ -2,7 +2,7 @@
   <img src="https://raw.github.com/tr8n/tr8n/master/doc/screenshots/tr8nlogo.png">
 </p>
 
-TranslationExchange Chrome Extension
+TML Chrome Extension
 ==================
 
 This extension allows users to submit and view translations of any public web site. 
@@ -54,7 +54,7 @@ Links
 Copyright and license
 ==================
 
-Copyright (c) 2014 Michael Berkovich, TranslationExchange.com
+Copyright (c) 2015 Translation Exchange, Inc
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

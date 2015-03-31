@@ -15,8 +15,8 @@ var PopupController = function () {
 
 //  this.showView('registration');
 
-  if (this.getBackgroundPage().tr8n_signup_email) {
-    $("#confirm_email").val(this.getBackgroundPage().tr8n_signup_email);
+  if (this.getBackgroundPage().trex_signup_email) {
+    $("#confirm_email").val(this.getBackgroundPage().trex_signup_email);
     this.showView('confirm');
   } else
     this.showView('main');
@@ -47,7 +47,7 @@ PopupController.prototype = {
    */
   addListeners_: function() {
     this.auth_forms.on(     'submit',   this.submitForm.bind(this)).validate();
-    this.toggle_button_.on( 'click',    this.toggleTr8n_.bind(this));
+    this.toggle_button_.on( 'click',    this.toggletrex_.bind(this));
     this.host_.on(          'dblclick', this.showHostForm_.bind(this));
     this.host_button_.on(   'click',    this.setHost_.bind(this));
 
@@ -67,7 +67,7 @@ PopupController.prototype = {
   },
 
   url: function(path) {
-    var host = this.getBackgroundPage().tr8n_host;
+    var host = this.getBackgroundPage().trex_host;
     var url = host + path;
     if (host.indexOf("localhost") != -1 || host.indexOf("lvh.me") != -1)
       url = "http://" + url;
@@ -78,7 +78,7 @@ PopupController.prototype = {
   },
 
   checkStatus: function(callback) {
-    var url = this.url("/tr8n/api/proxy/status");
+    var url = this.url("/trex/api/proxy/status");
     this.log("Checking status: " + url);
 
     $.ajax({
@@ -99,7 +99,7 @@ PopupController.prototype = {
 
     chrome.tabs.getSelected(null, function(tab) {
       self.log("Current tab url: " + tab.url);
-      var url = self.url("/tr8n/api/proxy/languages?referer=" + encodeURIComponent(tab.url));
+      var url = self.url("/v1/proxy/languages?referer=" + encodeURIComponent(tab.url));
       self.log("Loading languages: " + url);
       $.ajax({
         type    : "post",
@@ -136,7 +136,7 @@ PopupController.prototype = {
 
     chrome.tabs.getSelected(null, function(tab) {
       self.log("Current tab url: " + tab.url);
-      var url = self.url("/tr8n/api/proxy/switch_locale?locale=" + locale + "&referer=" + encodeURIComponent(tab.url));
+      var url = self.url("/v1/proxy/switch_locale?locale=" + locale + "&referer=" + encodeURIComponent(tab.url));
       self.log("Selecting locale: " + url);
 
       $.ajax({
@@ -164,7 +164,7 @@ PopupController.prototype = {
 
         chrome.tabs.getSelected(null, function(tab) {
           self.log("Current tab url: " + tab.url);
-          var url = self.url("/tr8n/api/proxy/toggle_inline_translations?referer=" + encodeURIComponent(tab.url));
+          var url = self.url("/v1/proxy/toggle_inline_translations?referer=" + encodeURIComponent(tab.url));
           self.log("Toggling inline translator: " + url);
 
           $.ajax({
@@ -201,7 +201,7 @@ PopupController.prototype = {
     var w = 800, h = 600;
     var left = (screen.width/2)-(w/2);
     var top = (screen.height/2)-(h/2);
-    var host = this.getBackgroundPage().tr8n_host;
+    var host = this.getBackgroundPage().trex_host;
 
     var url = host + "/login/auth?provider=" + provider + "&display=window";
     if (host.indexOf("localhost") != -1 || host.indexOf("lvh.me") != -1)
@@ -215,8 +215,8 @@ PopupController.prototype = {
 
   updateLabels: function() {
     var bgPage = this.getBackgroundPage();
-    this.host_.html(bgPage.tr8n_host);
-    if (bgPage.tr8n_enabled) {
+    this.host_.html(bgPage.trex_host);
+    if (bgPage.trex_enabled) {
       this.note_.show()
       this.toggle_button_.text("Deactivate");
     } else {
@@ -225,22 +225,22 @@ PopupController.prototype = {
     }
   },
 
-  toggleTr8n_: function() {
-    chrome.extension.getBackgroundPage().tr8n_enabled = !chrome.extension.getBackgroundPage().tr8n_enabled;
+  toggletrex_: function() {
+    chrome.extension.getBackgroundPage().trex_enabled = !chrome.extension.getBackgroundPage().trex_enabled;
     this.updateLabels();
     this.reloadWindow();
   },
 
   showHostForm_: function() {
     var bgPage = chrome.extension.getBackgroundPage();
-    this.host_field_.val(bgPage.tr8n_host);
+    this.host_field_.val(bgPage.trex_host);
     this.host_.hide()
     this.host_form_.show()
   },
 
   setHost_: function () {
     var bgPage = chrome.extension.getBackgroundPage();
-    bgPage.tr8n_host = this.host_field_.val();
+    bgPage.trex_host = this.host_field_.val();
 
     this.host_.show();
     this.host_form_.hide();
@@ -291,7 +291,7 @@ PopupController.prototype = {
   },
 
   handleSignupForm: function(data) {
-    this.getBackgroundPage().tr8n_signup_email = $("#signup_email").val();
+    this.getBackgroundPage().trex_signup_email = $("#signup_email").val();
     this.showView('confirm')
   },
 
@@ -304,12 +304,12 @@ PopupController.prototype = {
   },
 
   handleConfirmForm: function(data) {
-    this.getBackgroundPage().tr8n_signup_email = null;
+    this.getBackgroundPage().trex_signup_email = null;
     this.showView('registration')
   },
 
   returnToSignup: function() {
-    this.getBackgroundPage().tr8n_signup_email = null;
+    this.getBackgroundPage().trex_signup_email = null;
     this.showView("signup");
   },
   

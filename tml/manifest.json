@@ -1,7 +1,7 @@
 {
-  "name": "TranslationExchange.com",
-  "short_name": "TranslationExchange.com",
-  "version": "1.0.6",
+  "name": "Translation Exchange",
+  "short_name": "TrEx",
+  "version": "2.0.3",
   "manifest_version": 2,
   "minimum_chrome_version": "22.0.0.0",
   "description": "Help us translate the entire world wide web!",
@@ -21,7 +21,7 @@
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["scripts/tr8n.js"]
+      "js": ["scripts/tml.js"]
     }
   ],
 

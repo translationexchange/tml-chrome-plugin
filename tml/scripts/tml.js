@@ -1,10 +1,12 @@
 ;(function(doc) {
     chrome.runtime.sendMessage({method: "ping"}, function(response) {
       if (response.enabled) {
+        var boot_url = '//' + response.host + '/tools/proxy/boot.js';
+        //console.log("Inserting script: " + boot_url);
+
         var script = doc.createElement('script');
-        script.setAttribute('id', 'tr8n_root');
         script.setAttribute('type', 'application/javascript');
-        script.setAttribute('src', '//' + response.host + '/tr8n/api/proxy/boot.js?clientside=true');
+        script.setAttribute('src', boot_url);
         script.setAttribute('charset', 'UTF-8');
         doc.getElementsByTagName('head')[0].appendChild(script);
       }
