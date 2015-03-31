@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.github.com/tr8n/tr8n/master/doc/screenshots/tr8nlogo.png">
+  <img src="https://avatars0.githubusercontent.com/u/1316274?v=3&s=200">
 </p>
 
 TML Chrome Extension
@@ -39,10 +39,6 @@ Links
 ==================
 
 * Register at TranslationExchange.com: https://translationexchange.com
-
-* Read TranslationExchange documentation: http://wiki.tr8n.io
-
-* Visit TranslationExchange blog: http://blog.tr8n.io
 
 * Follow TranslationExchange on Twitter: https://twitter.com/translationx
 
