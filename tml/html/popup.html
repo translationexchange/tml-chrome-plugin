@@ -1,20 +1,19 @@
 <!doctype html>
 <html>
 <head>
-    <title>Tr8n Options</title>
+    <title>TrEx Options</title>
     <style>
-
 
     @-webkit-keyframes animatedBackground {
       from { background-position: 0 30px; }
       to { background-position: 1054px 30px; }
     }
 
-
     body {
       xoverflow: hidden;
       margin: 0px;
       padding: 0px;
+      width: 500px;
       font-family:Helvetica, Arial, sans-serif;
       background-color:#F4F8F9;
       background-image: url(../images/background.png);
@@ -66,273 +65,82 @@
       border-color:#389D56;
     }
 
-
     a {
       color:#16b;
       text-decoration:none;
     }
 
-
-    .auth-form {
-      margin:20px auto;
-      width:300px;
-      text-align:center;
-      background: #FFF;
-      padding: 20px;
-      box-shadow: 0 2px 1px rgba(0, 0, 0, 0.06);
-      border: solid 1px #DCDDE0;
-      border-radius: 3px;
-    }
-
-    .auth-form .btn {
-      width:100%;
-    }
-
-    .auth-form .form-group {
-      margin-bottom: 10px;
-    }
-
-    .auth-form label.error {
-      display: block;
-      color: #F33A3A;
-      font-size: 11px;
-      text-align: left;
-      padding: 4px 0 0;
-      font-weight: 100;
-    }
-
-    .flash-error {
-      background: #D34D4D;
-      padding: 10px 0;
-      margin: 0px 0px 10px;
-      color: #FFF;
-      border-radius: 2px 2px 0 0;
-      font-size: 14px;
-      font-weight: 100;
-      text-align: center;
-    }
-
-    .auth-form h3 {
-      font-weight:100;
-      color:#555;
-      margin:5px 0 0;
-      font-size: 22px;
-
-    }
-    .auth-form p {
-      font-weight:100;
-      color:#999;
-      margin: 7px 0 15px;
-    }
-
-    .auth-form input {
-      padding: 10px;
-      height: 38px;
-      border-radius: 1px;
-      border: solid 1px #ccc;
-      box-shadow: inset 2px 2px 1px rgba(0, 0, 0, 0.05);
-      background:#fcfcfc;
-      font-size: 14px;
-      box-sizing: border-box;
-      width: 100%;
-      outline:none;
-    }
-
-    .auth-form input:active,
-    .auth-form input:focus {
-      background:#fff;
-    }
-
-    .auth-form .passcode {
-      text-align:center;
-    }
-
-    .auth-form .ft {
-      font-size: 12px;
-      color: #AAA;
-      font-weight: 100;
-      padding-top: 5px;
-    }
-
-
-    #login,#signup,#registration,#confirm,#main,#language_selector {
+    #main, #custom_script_view {
       display:none;
     }
 
-    body.login #login,
-    body.signup #signup,
-    body.registration #registration,
-    body.language_selector #language_selector,
-    body.confirm #confirm,
+    body.custom_script_view #custom_script_view,
     body.main #main {
       display:block;
     }
 
-    .language_list {
-        margin-top:10px;
-        border: 1px solid #ccc;
-        max-height: 400px;
-        min-height: 400px;
-        overflow: auto;
-    }
-
-    .language_item {
-        text-align: left;
-        padding:8px;
-        cursor: pointer;
-        border-bottom: 1px solid #eee;
-    }
-
-    .language_item:hover {
-       background: #eee;
-    }
-
     </style>
     <script src="../scripts/jquery.js"></script>
-    <script src="../scripts/jquery.validate.js"></script>
     <script src="../scripts/popup.js"></script>
 </head>
 <body>
 
-    <div id="login" style="width:400px;opacity:0.8">
-        <div class="auth-form auth-login">
-          <img src="../images/logo.png" width="55px">
-          <h3>Log In</h3>
-          <p>
-            Welcome Back!
-          </p>
-          <form action="/tr8n/api/proxy/authorize" class="login-form">
-            <div class="form-group">
-              <input name="email" type="email" placeholder="Email" class="required email">
-            </div>
-            <div class="form-group">
-              <input name="password" type="password" placeholder="Password" class="required">
-            </div>
-            <div class="form-group">
-              <button class="btn">Log In</button>
-            </div>
-
-            <p style="color: #888; font-size:12px;">
-              Or login with one of the following services:
-            </p>
-
-            <p style="padding-bottom:20px;">
-                <a href="#" id="login-facebook"><img src="../images/fb.png" style="width:30px"></a>
-                <a href="#" id="login-github"><img src="../images/github.png" style="width:30px"></a>
-                <a href="#" id="login-google_oauth2"><img src="../images/google.png" style="width:30px"></a>
-                <a href="#" id="login-linkedin"><img src="../images/linkedin.png" style="width:30px"></a>
-            </p>
-
-            <div class="ft">
-              Don't have an account? <a href="#" data-show-view="signup">Sign up now</a>.
-            </div>
-          </form>
-        </div>
-    </div>
-
-    <div id="signup" style="width:400px;opacity:0.8">
-        <div class="auth-form auth-signup">
-          <img src="../images/logo.png" width="55px">
-          <h3>Sign Up</h3>
-          <p>
-            Provide us with your email address and we will email you instructions on how to complete your registration.
-          </p>
-          <form  action="/tr8n/api/proxy/signup" class="signup-form">
-            <div class="form-group">
-              <input type="email" placeholder="Email" name="email" id="signup_email">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-green">Sign Up</button>
-            </div>
-
-            <p style="color: #888; font-size:12px;">
-              Or login with one of the following services:
-            </p>
-
-            <p style="padding-bottom:20px;">
-                <a href="#" id="signup-facebook"><img src="../images/fb.png" style="width:30px"></a>
-                <a href="#" id="signup-github"><img src="../images/github.png" style="width:30px"></a>
-                <a href="#" id="signup-google_oauth2"><img src="../images/google.png" style="width:30px"></a>
-                <a href="#" id="signup-linkedin"><img src="../images/linkedin.png" style="width:30px"></a>
-            </p>
-
-            <div class="ft">
-              Already have an account? <a href="#" data-show-view="login">Log in here.</a>
-            </div>
-          </form>
-        </div>
-    </div>
-
-    <div id="confirm" style="width:400px;opacity:0.8">
-        <div class="auth-form auth-signup">
-          <img src="../images/logo.png" width="55px">
-          <h3>Check Your Email</h3>
-          <p>
-            We emailed you instructions on how to complete your registration.
-          </p>
-          <form action="/tr8n/api/proxy/confirm_email" class="confirm-form">
-            <input type="hidden" name="email" id="confirm_email">
-
-            <div class="form-group">
-              <input class="passcode" type="text" placeholder="Pass Code" name="password">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-green">Continue</button>
-            </div>
-            <div class="ft">
-              <a href="#" id="return_to_signup">Return to Sign Up</a>
-            </div>
-          </form>
-        </div>
-    </div>
-
-    <div id="registration" style="width:400px;opacity:0.8">
-        <div class="auth-form auth-registration">
-          <img src="../images/logo.png" width="55px">
-          <h3>Complete Registration</h3>
-          <p>
-            To complete registration, please provide the following information:
-          </p>
-          <form action="/tr8n/api/proxy/update_user" class="registration-form">
-            <div class="form-group">
-              <input type="text" placeholder="Name" name="name">
-            </div>
-            <div class="form-group">
-              <button class="btn btn-green">Get Started</button>
-            </div>
-          </form>
-        </div>
-    </div>
-
-    <div id="language_selector" style="width:400px;opacity:0.8">
-        <div class="auth-form auth-registration">
+    <div id="custom_script_view" style="width:100%; opacity:0.8; margin: 20px; text-align: center">
+        <div style="width: 92%">
             <img src="../images/logo.png" width="55px">
-            <h3>Choose a language</h3>
-            <div id="language_list" class="language_list">
-                <div style="padding:10px; text-align:left; font-size: 14px; color: #666;"><img src="../images/spinner.gif" style="vertical-align: middle;"> Loading...</div>
+
+            <div style="text-align:left; font-size: 16px; margin-top: 10px;">
+                Translation Center Host:
+            </div>
+            <div style="margin-bottom: 10px; margin-top: 10px;">
+                <input id="host_field" type="text" value="translation-center.translationexchange.com" style="width:98%; height: 25px; font-size: 14px;">
+            </div>
+
+            <div style="text-align:left; font-size: 16px; margin-top: 20px;">
+                <input type="checkbox" id="custom_script_checkbox" value="On" style="width: 15px; height: 15px;">
+                Use Custom Script:
+            </div>
+            <div style="margin-bottom: 10px; margin-top: 10px;">
+                <textarea id="custom_script_textarea" style="width: 98%; height: 300px; resize: none;" wrap="off">
+var script = document.createElement('script');
+script.setAttribute('type', 'application/javascript');
+script.setAttribute('src', '//localhost:8080/tml.js');
+script.setAttribute('charset', 'UTF-8');
+script.onload = function() {
+  tml.init("YOUR_APP_KEY", {
+    host: "http://localhost:3000",
+    debug: true,
+    translateBody: true,
+    translateTitle: true
+  });
+};
+document.getElementsByTagName('head')[0].appendChild(script);
+                </textarea>
+            </div>
+            <div>
+                <button id="custom_script_button" class="btn green" style="width: 100%">Update Script</button>
             </div>
         </div>
     </div>
 
-    <div id="main" style="width:400px;">
-
-        <div style="color:#888;background:#f4f8f9;text-align:center;width:400px;">
+    <div id="main" style="width:100%;">
+        <div style="color:#888;background:#f4f8f9;text-align:center;width:100%">
             <a href="https://translationexchange.com" style="outline:none;" target="_new"><img src="../images/title.png" style="width:160px;padding:10px;"></a>
         </div>
         <div style="padding:20px 40px 20px 40px; text-align:center;">
-
             <div style="padding:10px;">
                 <img src="../images/logo.png" style="width:180px;opacity:0.7">
             </div>
 
-
-          <div style="text-align:center;padding:15px;">
-            <button id="toggle_button" class="btn btn-green">Disable</button>
-
-          </div>
+            <div style="text-align:center;padding:15px;">
+              <button id="customize_button" class="btn btn-gray">Customize</button>
+              <button id="toggle_button" class="btn btn-green">Disable</button>
+            </div>
         </div>
 
         <div style="padding:0 10px 10px 10px;font-size:10px;text-align:center; display:none; color:black;" id="note">
+            <!--<a id="reset_cache" href="#">Reset Local Cache</a>-->
+
             <!--<div style="margin-bottom:15px;">-->
                 <!--<button id="change_language" class="btn" style="font-size:10px;">Change Language</button>-->
                 <!--<button id="toggle_inline_translations" class="btn" style="font-size:10px;">Toggle Translations</button>-->
@@ -346,15 +154,7 @@
         </div>
 
         <div style="background-image: url('../images/peeps.png'); width:100%;background-size:100%;height:88px;text-align: center;">
-            <div style="position:absolute; bottom:0px;text-align:center; width:100%;">
-                <div id="host" style="color:transparent;font-size:10px;text-align:center;"></div>
-                <div id="host_form" style="color:#eee;font-size:10px;text-align:center;display:none;">
-                  <input id="host_field" type="text" value="dev.tr8nhub.com" style="font-size:10px;width:150px;border:1px solid #eee;">
-                  <button id="host_button" style="font-size:10px;">set</button>
-                </div>
-            </div>
         </div>
-
     </div>
 
   </body>
