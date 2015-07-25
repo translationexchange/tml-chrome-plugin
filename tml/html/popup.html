@@ -92,16 +92,23 @@
             <div style="text-align:left; font-size: 16px; margin-top: 10px;">
                 Translation Center Host:
             </div>
-            <div style="margin-bottom: 10px; margin-top: 10px;">
+            <div style="margin-bottom: 10px; margin-top: 5px;">
                 <input id="host_field" type="text" value="translation-center.translationexchange.com" style="width:98%; height: 25px; font-size: 14px;">
             </div>
 
-            <div style="text-align:left; font-size: 16px; margin-top: 20px;">
-                <input type="checkbox" id="custom_script_checkbox" value="On" style="width: 15px; height: 15px;">
-                Use Custom Script:
+            <div style="text-align:left; font-size: 16px; margin-top: 10px;">
+                URL Regular Expression:
             </div>
-            <div style="margin-bottom: 10px; margin-top: 10px;">
-                <textarea id="custom_script_textarea" style="width: 98%; height: 300px; resize: none;" wrap="off">
+            <div style="margin-bottom: 10px; margin-top: 5px;">
+                <input id="custom_url_regex" type="text" value=".*" style="width:98%; height: 25px; font-size: 14px;">
+            </div>
+
+            <div style="text-align:left; font-size: 16px; margin-top: 10px;">
+                <input type="checkbox" id="custom_script_checkbox" value="On" style="width: 15px; height: 15px;">
+                Custom Script:
+            </div>
+            <div style="margin-bottom: 10px; margin-top: 5px;">
+                <textarea id="custom_script_textarea" style="width: 98%; height: 250px; resize: none;" wrap="off">
 var script = document.createElement('script');
 script.setAttribute('type', 'application/javascript');
 script.setAttribute('src', '//localhost:8080/tml.js');
@@ -117,6 +124,7 @@ script.onload = function() {
 document.getElementsByTagName('head')[0].appendChild(script);
                 </textarea>
             </div>
+
             <div>
                 <button id="custom_script_button" class="btn green" style="width: 100%">Update Script</button>
             </div>

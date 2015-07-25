@@ -2,7 +2,12 @@
     chrome.runtime.sendMessage({method: "ping"}, function(response) {
       if (response.enabled) {
 
-        // console.log(response);
+        if (response.regex) {
+          if (!window.location.href.match(response.regex)) {
+            console.log("Tml Chrome: Not matching expression, skipping url.");
+            return;
+          }
+        }
 
         var boot_url = '//' + response.host + '/tools/proxy/boot.js';
 
