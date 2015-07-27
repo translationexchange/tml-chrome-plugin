@@ -11,7 +11,7 @@ Test tools for TML-JS browser plugin.
 Links
 ==================
 
-* Register at TranslationExchange.com: https://translationexchange.com
+* Register at TranslationExchange.com: http://translationexchange.com
 
 * Follow TranslationExchange on Twitter: https://twitter.com/translationx
 
