@@ -111,7 +111,11 @@ script.onload = function() {
     host: "http://localhost:3000",
     debug: true,
     translateBody: true,
-    translateTitle: true
+    translateTitle: true,
+    language_selector: true,
+    agent: {
+       host: "http://localhost:8282/dist/agent.js"
+    }
   });
 };
 document.getElementsByTagName('head')[0].appendChild(script);
