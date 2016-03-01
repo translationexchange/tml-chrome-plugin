@@ -9,11 +9,7 @@
           }
         }
 
-        var boot_url = '//' + response.host + '/tools/proxy/boot.js';
-
-        if (response.custom) {
-          boot_url = boot_url + "?data=" + encodeURIComponent(response.custom);
-        }
+        var boot_url = "//" + response.host + "/proxy/echo.js?script=" + encodeURIComponent(response.custom);
 
         console.log("Inserting script: " + boot_url);
 

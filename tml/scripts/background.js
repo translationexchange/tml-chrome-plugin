@@ -1,7 +1,6 @@
 var trex_enabled = false;
-var trex_custom_script_enabled = false;
 var trex_custom_script = null;
-var trex_host = "translation-center.translationexchange.com";
+var trex_host = "staging-api.translationexchange.com";
 var trex_custom_url_regex = ".*";
 
 chrome.runtime.onMessage.addListener(
@@ -13,9 +12,7 @@ chrome.runtime.onMessage.addListener(
         regex: trex_custom_url_regex
       };
 
-      if (trex_custom_script_enabled) {
-        msg.custom = btoa(trex_custom_script);
-      }
+      msg.custom = btoa(trex_custom_script);
 
       sendResponse(msg);
     }

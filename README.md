@@ -5,13 +5,13 @@
 TML Chrome Extension
 ==================
  
-Test tools for TML-JS browser plugin.
+Web site translator.
 
  
 Links
 ==================
 
-* Register at TranslationExchange.com: http://translationexchange.com
+* Register at TranslationExchange.com: https://translationexchange.com
 
 * Follow TranslationExchange on Twitter: https://twitter.com/translationx
 
@@ -23,7 +23,7 @@ Links
 Copyright and license
 ==================
 
-Copyright (c) 2015 Translation Exchange, Inc
+Copyright (c) 2016 Translation Exchange, Inc
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

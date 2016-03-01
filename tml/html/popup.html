@@ -90,13 +90,6 @@
             <img src="../images/logo.png" width="55px">
 
             <div style="text-align:left; font-size: 16px; margin-top: 10px;">
-                Translation Center Host:
-            </div>
-            <div style="margin-bottom: 10px; margin-top: 5px;">
-                <input id="host_field" type="text" value="translation-center.translationexchange.com" style="width:98%; height: 25px; font-size: 14px;">
-            </div>
-
-            <div style="text-align:left; font-size: 16px; margin-top: 10px;">
                 URL Regular Expression:
             </div>
             <div style="margin-bottom: 10px; margin-top: 5px;">
@@ -104,8 +97,7 @@
             </div>
 
             <div style="text-align:left; font-size: 16px; margin-top: 10px;">
-                <input type="checkbox" id="custom_script_checkbox" value="On" style="width: 15px; height: 15px;">
-                Custom Script:
+                Script:
             </div>
             <div style="margin-bottom: 10px; margin-top: 5px;">
                 <textarea id="custom_script_textarea" style="width: 98%; height: 250px; resize: none;" wrap="off">
@@ -114,7 +106,8 @@ script.setAttribute('type', 'application/javascript');
 script.setAttribute('src', '//localhost:8080/tml.js');
 script.setAttribute('charset', 'UTF-8');
 script.onload = function() {
-  tml.init("YOUR_APP_KEY", {
+  tml.init({
+    key: "YOUR_APP_KEY",
     host: "http://localhost:3000",
     debug: true,
     translateBody: true,
@@ -132,8 +125,8 @@ document.getElementsByTagName('head')[0].appendChild(script);
     </div>
 
     <div id="main" style="width:100%;">
-        <div style="color:#888;background:#f4f8f9;text-align:center;width:100%">
-            <a href="https://translationexchange.com" style="outline:none;" target="_new"><img src="../images/title.png" style="width:160px;padding:10px;"></a>
+        <div style="color:#888;background:#eee;text-align:center;width:100%; padding:10px; font-size: 16px; font-style: bold;">
+            <a href="https://translationexchange.com" style="outline:none;color:#888;" target="_new">Translation Exchange, Inc.</a>
         </div>
         <div style="padding:20px 40px 20px 40px; text-align:center;">
             <div style="padding:10px;">
@@ -142,7 +135,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
             <div style="text-align:center;padding:15px;">
               <button id="customize_button" class="btn btn-gray">Customize</button>
-              <button id="toggle_button" class="btn btn-green">Disable</button>
+              <button id="toggle_button" class="btn btn-green">Activate</button>
             </div>
         </div>
 
@@ -155,8 +148,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
             <!--</div>-->
 
             <div style="background:#eee; opacity: 0.6; margin:10px; padding: 10px">
-                <div style="padding:10px;">Use <strong>Ctrl+Shift+S</strong> to see a list of available shortcuts.</div>
-                <div style=""><strong>Right-Mouse-Click</strong> (Windows) or <strong>Ctrl+Click</strong> (Mac) on any text underlined with
+                <div style=""><strong>Right-Mouse-Click</strong> or <strong>Ctrl+Click</strong> on any text underlined with
                     <span style="border-bottom:1px solid red">red</span> to translate it or <span style="border-bottom:1px solid green">green</span> to vote on translations.</div>
             </div>
         </div>
