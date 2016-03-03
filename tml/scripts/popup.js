@@ -14,8 +14,6 @@ var PopupController = function () {
   this.showView('main');
 };
 
-var trex_default_host = "translation-center.translationexchange.com";
-
 PopupController.prototype = {
   /**
    * A cached reference to the button element.
@@ -119,7 +117,6 @@ PopupController.prototype = {
     var self = this;
 
     this.getValues(['trex_host', 'trex_custom_script', 'trex_custom_url_regex'], function(data) {
-      self.getBackgroundPage().trex_host = data.trex_host || trex_default_host;
       self.getBackgroundPage().trex_custom_script = data.trex_custom_script;
       self.getBackgroundPage().trex_custom_url_regex = data.trex_custom_url_regex;
 
