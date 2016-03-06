@@ -194,7 +194,7 @@ PopupController.prototype = {
     var host = this.getHost(env);
     var url = host + "/proxy/activate?domain=" + domain;
 
-    //this.log("Creating script at url: " + url);
+    this.log("Creating script at url: " + url);
 
     $.get(url, function( response ) {
       if (response.status == 'ok') {
@@ -207,7 +207,7 @@ PopupController.prototype = {
             config[domain][env] = {};
 
           config[domain][env] = {
-            enabled: false,
+            enabled: true,
             host: host,
             script: response.script
           };
@@ -221,8 +221,15 @@ PopupController.prototype = {
       } else {
         self.log(response.message);
       }
-    }).fail(function() {
-      self.log('Failed to register project');
+    }).fail(function(response) {
+        if (response.status === 403) {
+          var login_url = host + "/login";
+          self.log("Opening login window: " + login_url);
+          window.open(login_url);
+        } else {
+          self.log('Failed to register project');
+          self.log(response);
+        }
     });
   },
 
