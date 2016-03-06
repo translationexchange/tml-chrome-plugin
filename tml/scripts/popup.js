@@ -75,7 +75,7 @@ PopupController.prototype = {
   initialize: function() {
     var domain = this.getBackgroundPage().current_tab_domain;
     this.domain_.val(domain);
-    this.log("Initializing for " + domain);
+    //this.log("Initializing for " + domain);
     var self = this;
 
     self.addListeners();
@@ -90,7 +90,7 @@ PopupController.prototype = {
       var env = config.env || 'development';
       config = config[env] || {};
 
-      self.log(config);
+      //self.log(config);
 
       if (config.enabled) {
         self.note_.show();
@@ -152,7 +152,7 @@ PopupController.prototype = {
     var script = this.script_.val();
     var host = this.getHost(env);
 
-    self.log("Saving script and env for " + domain);
+    //self.log("Saving script and env for " + domain);
 
     chrome.storage.local.get(domain, function(data) {
       var config = data || {};
@@ -194,7 +194,7 @@ PopupController.prototype = {
     var host = this.getHost(env);
     var url = host + "/proxy/activate?domain=" + domain;
 
-    this.log("Creating script at url: " + url);
+    //this.log("Creating script at url: " + url);
 
     $.get(url, function( response ) {
       if (response.status == 'ok') {
@@ -221,6 +221,8 @@ PopupController.prototype = {
       } else {
         self.log(response.message);
       }
+    }).fail(function() {
+      self.log('Failed to register project');
     });
   },
 
