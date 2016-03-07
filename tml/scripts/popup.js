@@ -65,6 +65,7 @@ PopupController.prototype = {
 
   hosts_: {
     development:  "http://localhost:3008",
+    sandbox:      "https://sandbox-gateway.translationexchange.com",
     staging:      "https://staging-gateway.translationexchange.com",
     production:   "https://gateway.translationexchange.com"
   },
