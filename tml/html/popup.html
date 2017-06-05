@@ -1,186 +1,182 @@
 <!doctype html>
 <html>
 <head>
-    <title>TrEx Options</title>
-    <style>
+  <title>Translation Exchange</title>
+  <style>
 
-        @-webkit-keyframes animatedBackground {
-            from {
-                background-position: 0 30px;
-            }
-            to {
-                background-position: 1054px 30px;
-            }
-        }
+    body {
+     transition:all 0.3s ease-in-out;
+     width:320px;
+     font-size:13px;
+     margin:0;
+     padding:0;
+     background:#fafafa;
+     -webkit-font-smoothing:antialiased;
+    }
 
-        body {
-            xoverflow: hidden;
-            margin: 0px;
-            padding: 0px;
-            width: 500px;
-            font-family: Helvetica, Arial, sans-serif;
-            background-color: #F4F8F9;
-            background-image: url(../images/background.png);
-            background-position: 0px 0px;
-            background-repeat: repeat-x;
-            -webkit-animation: animatedBackground 40s linear infinite;
-        }
+    body.config-mode { width:400px; }
 
-        .btn {
-            text-transform: uppercase;
-            line-height: 14px;
-            padding: 14px 24px 12px;
-            border-radius: 2px;
-            border-bottom: solid 3px rgba(0, 0, 0, 0.15);
-            border-width: 0 0 3px;
-            font-size: 13px;
-            color: #fff;
-            background-color: #2db7ea;
-            border-color: #42a2ed;
-            outline: none;
-            cursor: pointer;
+    header {
+      border-bottom: solid 1px #ececec;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      background: #fff;
+      color: #696c7b;
+      text-align: center;
+      box-shadow: 0 1px 1px rgba(0,0,0,0.03);
+      font-weight: 500;
+    }
 
-        }
+    header img {
+      margin: 2px 0 0 auto;      
+    }
 
-        .btn:hover {
-            background-color: #1BA7DA;
-            border-color: #4589BF;
-        }
+    main {
+      padding:20px;
+    }
 
-        .btn:active {
-            background-color: #3276B1;
-            border-color: #3276B1;
-            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
-        }
 
-        .btn.btn-green {
-            background: #64CE83;
-            border-bottom: solid 3px rgba(0, 0, 0, 0.15);
-        }
+    input, textarea {
+      padding: 8px;
+      width: 100%;
+      font-size: 13px;
+      border: solid 1px #dedede;
+      border-radius: 2px;
+      background: #fff;
+      outline: none;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+      box-sizing: border-box;
+    }
 
-        .btn.btn-green:hover {
-            background-color: #4DC26F;
-            border-color: #2D994D;
-        }
+    label {
+      font-weight: 500;
+      display: block;
+      margin-bottom: 4px;
+      font-size: 12px;
+      color: #848484;
+    }
 
-        .btn.btn-green:active {
-            background-color: #389D56;
-            border-color: #389D56;
-        }
+    input:focus, input:active,
+    textarea:focus, textarea:active {
+      outline:none;
+    }
 
-        a {
-            color: #16b;
-            text-decoration: none;
-        }
+    .code-editor {
+      font-family: courier, monospace;
+      font-size: 11px;      
+    }
 
-        #main, #custom_script_view {
-            display: none;
-        }
 
-        body.custom_script_view #custom_script_view,
-        body.main #main {
-            display: block;
-        }
+    button {
+      padding: 9px 15px;
+      border-radius: 2px;
+      font-weight: 800;
+      border: solid 1px #3396ff;
+      background: #3396ff;
+      color: #fff;
+      font-size: 12px;
+      font-family: Helvetica Neue;
+      outline:none;
+      transition:all 0.2s;
+    }
 
-        @media screen and (-webkit-min-device-pixel-ratio: 0) {
-            /*safari and chrome*/
-            select {
-                width: 100%;
-                height: 25px;
-                font-size: 14px;
-                line-height: 30px;
-                background: #f4f4f4;
-            }
-        }
+    button:hover {
+      background: #2680e0;
+      border-color:#2680e0;
+    }
 
-        .shadow {
-            border: 1px solid #eee;
-            -webkit-box-shadow: 0px 1px 30px -6px rgba(0, 0, 0, 0.3);
-            -moz-box-shadow: 0px 1px 30px -6px rgba(0, 0, 0, 0.3);
-            box-shadow: 0px 1px 30px -6px rgba(0, 0, 0, 0.3);
-        }
-    </style>
-    <script src="../scripts/jquery.js"></script>
-    <script src="../scripts/popup.js"></script>
+    button:active {
+      box-shadow:inset 0 1px 1px rgba(0,0,0,0.15);
+    }
+
+    button.cancel {
+      background: #fff;
+      color: #6991b1;
+      border: solid 1px #b6c9d8;
+    }
+
+    button.cancel:hover {
+      background: #fff;
+    }
+
+    .form-group {
+      margin:0 0 10px;
+    }
+
+    p {
+      margin-top: 5px;
+      color: #607D8B;
+    }
+
+    h4 {
+      margin: 0;
+      color: #374c56;
+    }
+
+    .text-active {
+      color:green;
+    }
+
+    .tag {
+      font-size: 9px;
+      background: #4CAF50;
+      padding: 3px 5px;
+      border-radius: 3px;
+      color: #fff;
+      vertical-align: 2px;
+      margin-left: 5px;      
+    }
+
+  </style>
+  <script src="../scripts/jquery.js"></script>
+  <script src="../scripts/popup.js"></script>
 </head>
 <body>
-<div id="custom_script_view" style="width:100%; opacity:0.8; margin: 20px; text-align: center">
-    <div style="width: 92%">
-        <img src="../images/logo.png" width="55px">
+  <header>
+    Translation Exchange
+    <img src="../images/logo.png" height="20px" id="trex_show_config_btn">
+  </header>
+  <main>
 
-        <div style="text-align:left; font-size: 16px; margin-top: 10px;">
-            Environment:
-        </div>
-        <div style="margin-bottom: 10px; margin-top: 5px;">
-            <select id="trex_env" class="shadow">
-                <option value="development">Development</option>
-                <option value="sandbox">Sandbox</option>
-                <option value="staging">Staging</option>
-                <option value="production">Production</option>
-            </select>
-        </div>
-
-        <div style="text-align:left; font-size: 16px; margin-top: 10px;">
-            Domain:
-        </div>
-        <div style="margin-bottom: 10px; margin-top: 5px;">
-            <input id="trex_domain" type="text" value=".*"
-                   style="padding: 0 5px; width:98%; height: 25px; font-size: 14px;" class="shadow">
-        </div>
-
-        <div style="text-align:left; font-size: 16px; margin-top: 10px;">
-            Script:
-        </div>
-        <div style="margin-bottom: 10px; margin-top: 5px;">
-            <textarea id="trex_script" style="padding: 5px; width: 98%; height: 250px; resize: none;" wrap="off"
-                      class="shadow"></textarea>
-        </div>
-
-        <div>
-            <table style="width: 100%;">
-                <tr>
-                    <td style="padding:5px;">
-                        <button id="trex_create_script" class="btn btn-gray" style="width: 100%">Register</button>
-                    </td>
-                    <td style="padding:5px;">
-                        <button id="trex_update_script" class="btn btn-green" style="width: 100%">Update</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div id="main" style="width:100%;">
-    <div style="color:#888;background:#eee;text-align:center;width:100%; padding:10px; font-size: 16px; font-weight: bold;">
-        <a href="https://translationexchange.com" style="outline:none;color:#888;" target="_new">Translation
-            Exchange</a>
-    </div>
-    <div style="padding:20px 40px 20px 40px; text-align:center;">
-        <div style="padding:10px;">
-            <img src="../images/logo.png" style="width:180px;opacity:0.7">
-        </div>
-
-        <div style="text-align:center;padding:15px;">
-            <button id="trex_customize" class="btn btn-gray">Configure</button>
-            <button id="trex_toggle" class="btn btn-green">Activate</button>
-        </div>
+    <div id="trex_config" style="display:none">
+      <div class="form-group">
+        <label>Environment:</label>
+        <select id="trex_env">
+          <option value="development">Development</option>
+          <option value="sandbox">Sandbox</option>
+          <option value="staging">Staging</option>
+          <option value="production">Production</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Domain:</label>
+        <input id="trex_domain" type="text" value=".*" />
+      </div>
+      <div class="form-group">
+        <label>Script:</label>
+        <textarea id="trex_script" rows="20" class="code-editor"></textarea>
+      </div>
+      <div class="form-group">
+        <button id="trex_update_script">Update</button>
+        <button class="cancel" id="trex_hide_config_btn">Cancel</button>
+      </div>
     </div>
 
-    <div style="padding:0 10px 10px 10px;font-size:10px;text-align:center; display:none; color:black;" id="trex_note">
-        <div style="background:#eee; opacity: 0.6; margin:10px; padding: 10px">
-            <div style="">
-                <strong>Right-Mouse-Click</strong> or <strong>Ctrl+Click</strong> on any text underlined with
-                <span style="border-bottom:1px solid red">red</span> to translate it or
-                <span style="border-bottom:1px solid green">green</span> to vote on translations.
-            </div>
-        </div>
+    <div id="trex_main">
+      <div id="trex_active">
+        <h4>Translation Mode <span class="tag">ACTIVE</span></h4>
+        <p>Translation Mode is <strong>active</strong> on this domain.</p>
+        <button class="trex_toggle cancel">Deactivate</button>
+      </div>
+      <div id="trex_inactive">
+        <h4>Translation Mode</h4>
+        <p>Translation Mode is not active on this domain.</p>        
+        <button class="trex_toggle">Activate</button>
+      </div>
     </div>
-
-    <div style="background-image: url('../images/peeps.png'); width:100%;background-size:100%;height:88px;text-align: center;">
-    </div>
-</div>
-
+  </main>
 </body>
 </html>
 
